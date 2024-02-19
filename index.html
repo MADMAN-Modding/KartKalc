@@ -19,13 +19,15 @@
         
     <p>Which team are you on?</p>
     <form>
-        <input type="radio" id="redTeamButton" name="teamSelector" value="red"> Red Team
+        <input type="radio" id="redTeamButton" name="teamSelector" onclick="teamChange('red')" value="red"> Red Team
         <br>
-        <input type="radio" id="blueTeamButton" name="teamSelector" value="blue"> Blue Team
+        <input type="radio" id="blueTeamButton" name="teamSelector" onclick="teamChange('blue')" value="blue"> Blue Team
     </form>
     <form>
-        <input type="number" id="redPoints"> Red Team Points</form>
-        <input type="number" id="bluePoints"> Blue Team Points</form>
+        <p id="redPointsText"><input type="number" id="redPoints"> Red Team Points</p>
+    </form>
+    <form>
+        <p id="bluePointsText"><input type="number" id="bluePoints"> Blue Team Points</p>
     </form>
 
     <p onclick="main()" id="check">Check for places</p>

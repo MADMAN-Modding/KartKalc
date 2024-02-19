@@ -4,6 +4,8 @@ const pointValues = [15, 12, 10, 8, 6, 4, 2, 1];
 // Places
 const places = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"];
 
+
+
 // Main function
 function main() {
     // Intializes the placesElement variable
@@ -64,6 +66,17 @@ function main() {
     } else {
         placesElement.innerHTML = placesElement.innerHTML.slice(0, -3) + '.';
     }
+}
+
+function teamChange(team) {
+    if (team == 'red') {
+        document.getElementById("redPointsText").innerHTML = "<input type='number' value='" + document.getElementById("redPoints").value + "' id='redPoints'> Red Team/Your Team Points";
+        document.getElementById("bluePointsText").innerHTML = "<input type='number' value='" + document.getElementById("bluePoints").value + "' id='bluePoints'> Blue Team/Their Team Points";
+    } else if (team == 'blue') {
+        document.getElementById("redPointsText").innerHTML = "<input type='number' value='" + document.getElementById("redPoints").value + "' id='redPoints'> Red Team/Their Team Points"
+        document.getElementById("bluePointsText").innerHTML = "<input type='number' value='" + document.getElementById("bluePoints").value + "' id='bluePoints'> Blue Team/Your Team Points"
+    }
+
 }
 
 // Function for checking points
