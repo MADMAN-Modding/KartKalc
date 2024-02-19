@@ -4,7 +4,7 @@ const pointValues = [15, 12, 10, 8, 6, 4, 2, 1];
 // Places
 const places = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"];
 
-
+const totalPoints = 51;
 
 // Main function
 function main() {
@@ -83,9 +83,11 @@ function teamChange(team) {
 function checkPoints(redPoints, bluePoints, ...indices) {
     if (clientTeam == "blue") {
         const totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
-        return bluePoints + totalPoints > redPoints;
+        let remaningPoints = 51 - totalPoints;
+        return bluePoints + totalPoints > redPoints + remaningPoints;
     } else if (clientTeam == "red") {
         const totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
-        return redPoints + totalPoints > bluePoints;
+        let remaningPoints = 51 - totalPoints;
+        return 51 - redPoints + totalPoints > bluePoints + remaningPoints;
     }
 }
