@@ -9,7 +9,7 @@ function main() {
     // Intializes the placesElement variable
     const placesElement = document.getElementById('places');
 
-    placeElement.innerHTML = "The possible places are: ";
+    placesElement.innerHTML = "The possible places are: ";
 
     // Gets the values from the form
     const redPoints = +document.getElementById("redPoints").value;
