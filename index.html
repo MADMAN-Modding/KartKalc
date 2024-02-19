@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MarioKart Point Calculator</title>
+    <meta charset="utf-8" lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <script src="js/index.js"></script>
+
+</head>
+
+<body>
+    <h1>Welcome to the MarioKart Point Calculator!</h1>
+    <h2>I made this tool so it would be possible to calculate what places your team would need in order to take the lead
+        in a race.</h2>
+
+    <form>
+        <input type="radio" id="redTeamButton" name="teamSelector" value="red"> Red Team
+        <br>
+        <input type="radio" id="blueTeamButton" name="teamSelector" value="blue"> Blue Team
+    </form>
+    <form>
+        <input type="number" id="redPoints"> Red Team Points</form>
+        <input type="number" id="bluePoints"> Blue Team Points</form>
+    </form>
+
+    <p onclick="main()">Check for places</p>
+
+    <p id="places">The possible places are: </p>
+</body>
+
+</html>
