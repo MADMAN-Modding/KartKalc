@@ -60,19 +60,19 @@ function main() {
 
     if (clientTeam === "red") {
         for (let i = 0; i < pointValues.length; i++) {
-            if (checkPointsRed(redPoints, redPoints, i)) {
+            if (checkPointsRed(redPoints, bluePoints, i)) {
                 placesElement.innerHTML += " " + places[i] + " | ";
             } else {
                 for (let ii = i + 1; ii < pointValues.length; ii++) {
-                    if (checkPointsRed(redPoints, redPoints, i, ii)) {
+                    if (checkPointsRed(redPoints, bluePoints, i, ii)) {
                         placesElement.innerHTML += " " + places[i] + " and " + places[ii] + " | ";
                     } else {
                         for (let iii = ii + 1; iii < pointValues.length; iii++) {
-                            if (checkPointsRed(redPoints, redPoints, i, ii, iii)) {
+                            if (checkPointsRed(redPoints, bluePoints, i, ii, iii)) {
                                 placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", and " + places[iii] + " | ";
                             } else {
                                 for (let iv = iii + 1; iv < pointValues.length; iv++) {
-                                    if (checkPointsRed(redPoints, redPoints, i, ii, iii, iv)) {
+                                    if (checkPointsRed(redPoints, bluePoints, i, ii, iii, iv)) {
                                         placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", " + places[iii] + ", and " + places[iv] + " | "
                                     }
                                 }
