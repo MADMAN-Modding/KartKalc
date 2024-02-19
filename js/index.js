@@ -8,7 +8,6 @@ const places = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"];
 function main() {
     // Resets the text
     const placesElement = document.getElementById('places');
-    placesElement.innerHTML = "The possible places are: ";
 
     // Gets the values from the form
     const redPoints = +document.getElementById("redPoints").value;
@@ -83,7 +82,7 @@ function main() {
         }
     }
 
-    if (placesElement.innerHTML == "The possible places are: ") {
+    if (placesElement.innerHTML == "The possible places are: " || placesElement.innerHTML == "No Solution :(") {
         placesElement.innerHTML = "No Solution :(";
     } else {
         placesElement.innerHTML = placesElement.innerHTML.slice(0, -3) + '.';
