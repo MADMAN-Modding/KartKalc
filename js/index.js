@@ -18,6 +18,7 @@ function main() {
     const redTeamButton = document.getElementById("redTeamButton");
     const blueTeamButton = document.getElementById("blueTeamButton");
 
+    // Sets the clientTeam value
     if (redTeamButton.checked) {
         clientTeam = "red";
     }
@@ -32,23 +33,22 @@ function main() {
         return;
     }
 
-    if (clientTeam === "blue") {
-        for (let i = 0; i < pointValues.length; i++) {
-            if (checkPointsBlue(redPoints, bluePoints, i)) {
-                placesElement.innerHTML += " " + places[i] + " | ";
-            } else {
-                for (let ii = i + 1; ii < pointValues.length; ii++) {
-                    if (checkPointsBlue(redPoints, bluePoints, i, ii)) {
-                        placesElement.innerHTML += " " + places[i] + " and " + places[ii] + " | ";
-                    } else {
-                        for (let iii = ii + 1; iii < pointValues.length; iii++) {
-                            if (checkPointsBlue(redPoints, bluePoints, i, ii, iii)) {
-                                placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", and " + places[iii] + " | ";
-                            } else {
-                                for (let iv = iii + 1; iv < pointValues.length; iv++) {
-                                    if (checkPointsBlue(redPoints, bluePoints, i, ii, iii, iv)) {
-                                        placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", " + places[iii] + ", and " + places[iv] + " | "
-                                    }
+    // For loop that goes through the options
+    for (let i = 0; i < pointValues.length; i++) {
+        if (checkPoints(redPoints, bluePoints, i)) {
+            placesElement.innerHTML += " " + places[i] + " | ";
+        } else {
+            for (let ii = i + 1; ii < pointValues.length; ii++) {
+                if (checkPoints(redPoints, bluePoints, i, ii)) {
+                    placesElement.innerHTML += " " + places[i] + " and " + places[ii] + " | ";
+                } else {
+                    for (let iii = ii + 1; iii < pointValues.length; iii++) {
+                        if (checkPoints(redPoints, bluePoints, i, ii, iii)) {
+                            placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", and " + places[iii] + " | ";
+                        } else {
+                            for (let iv = iii + 1; iv < pointValues.length; iv++) {
+                                if (checkPoints(redPoints, bluePoints, i, ii, iii, iv)) {
+                                    placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", " + places[iii] + ", and " + places[iv] + " | "
                                 }
                             }
                         }
@@ -58,32 +58,7 @@ function main() {
         }
     }
 
-    if (clientTeam === "red") {
-        for (let i = 0; i < pointValues.length; i++) {
-            if (checkPointsRed(redPoints, bluePoints, i)) {
-                placesElement.innerHTML += " " + places[i] + " | ";
-            } else {
-                for (let ii = i + 1; ii < pointValues.length; ii++) {
-                    if (checkPointsRed(redPoints, bluePoints, i, ii)) {
-                        placesElement.innerHTML += " " + places[i] + " and " + places[ii] + " | ";
-                    } else {
-                        for (let iii = ii + 1; iii < pointValues.length; iii++) {
-                            if (checkPointsRed(redPoints, bluePoints, i, ii, iii)) {
-                                placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", and " + places[iii] + " | ";
-                            } else {
-                                for (let iv = iii + 1; iv < pointValues.length; iv++) {
-                                    if (checkPointsRed(redPoints, bluePoints, i, ii, iii, iv)) {
-                                        placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", " + places[iii] + ", and " + places[iv] + " | "
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
+    // Gives a sad message or replaces the last comma with a .
     if (placesElement.innerHTML == "The possible places are: " || placesElement.innerHTML == "No Solution :(") {
         placesElement.innerHTML = "No Solution :(";
     } else {
@@ -91,12 +66,13 @@ function main() {
     }
 }
 
-function checkPointsBlue(redPoints, bluePoints, ...indices) {
-    const totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
-    return bluePoints + totalPoints > redPoints;
-}
-
-function checkPointsRed(redPoints, bluePoints, ...indices) {
-    const totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
-    return redPoints + totalPoints > bluePoints;
+// Function for checking points
+function checkPoints(redPoints, bluePoints, ...indices) {
+    if (clientTeam == "blue") {
+        const totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
+        return bluePoints + totalPoints > redPoints;
+    } else if (clientTeam == "red") {
+        const totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
+        return redPoints + totalPoints > bluePoints;
+    }
 }
