@@ -6,8 +6,10 @@ const places = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"];
 
 // Main function
 function main() {
-    // Resets the text
+    // Intializes the placesElement variable
     const placesElement = document.getElementById('places');
+
+    placeElement.innerHTML = "The possible places are: ";
 
     // Gets the values from the form
     const redPoints = +document.getElementById("redPoints").value;
