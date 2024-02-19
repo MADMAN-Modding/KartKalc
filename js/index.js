@@ -17,7 +17,13 @@ function main() {
     const redTeamButton = document.getElementById("redTeamButton");
     const blueTeamButton = document.getElementById("blueTeamButton");
 
-    const clientTeam = redTeamButton.value ? "red" : "blue";
+    if (redTeamButton.checked) {
+        clientTeam = "red";
+    }
+
+    if (blueTeamButton.checked) {
+        clientTeam = "blue";
+    }
 
     if (clientTeam === "blue" && bluePoints > redPoints) {
         return;
@@ -77,7 +83,7 @@ function main() {
         }
     }
 
-    if (placesElement.innerHTML === "The possible places are: ") {
+    if (placesElement.innerHTML == "The possible places are: ") {
         placesElement.innerHTML = "No Solution :(";
     } else {
         placesElement.innerHTML = placesElement.innerHTML.slice(0, -3) + '.';
