@@ -4,7 +4,16 @@ const pointValues = [15, 12, 10, 8, 6, 4, 2, 1];
 // Places
 const places = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"];
 
-const totalPoints = 51;
+// Intializing variables
+const totalPossiblePoints = 58;
+
+let remainingPoints;
+
+let totalPoints;
+
+let enemyPoints;
+
+let friendlyPoints;
 
 // Main function
 function main() {
@@ -38,19 +47,19 @@ function main() {
     // For loop that goes through the options
     for (let i = 0; i < pointValues.length; i++) {
         if (checkPoints(redPoints, bluePoints, i)) {
-            placesElement.innerHTML += " " + places[i] + " | ";
+            placesElement.innerHTML += " " + places[i] + " " + friendlyPoints + " to " + enemyPoints + " | ";
         } else {
             for (let ii = i + 1; ii < pointValues.length; ii++) {
                 if (checkPoints(redPoints, bluePoints, i, ii)) {
-                    placesElement.innerHTML += " " + places[i] + " and " + places[ii] + " | ";
+                    placesElement.innerHTML += " " + places[i] + " and " + places[ii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
                 } else {
                     for (let iii = ii + 1; iii < pointValues.length; iii++) {
                         if (checkPoints(redPoints, bluePoints, i, ii, iii)) {
-                            placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", and " + places[iii] + " | ";
+                            placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", and " + places[iii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
                         } else {
                             for (let iv = iii + 1; iv < pointValues.length; iv++) {
                                 if (checkPoints(redPoints, bluePoints, i, ii, iii, iv)) {
-                                    placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", " + places[iii] + ", and " + places[iv] + " | "
+                                    placesElement.innerHTML += " " + places[i] + ", " + places[ii] + ", " + places[iii] + ", and " + places[iv] + " " + friendlyPoints + " to " + enemyPoints + " | ";
                                 }
                             }
                         }
@@ -82,12 +91,16 @@ function teamChange(team) {
 // Function for checking points
 function checkPoints(redPoints, bluePoints, ...indices) {
     if (clientTeam == "blue") {
-        const totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
-        let remaningPoints = 51 - totalPoints;
-        return bluePoints + totalPoints > redPoints + remaningPoints;
+        totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
+        remainingPoints = totalPossiblePoints - totalPoints;
+        enemyPoints = redPoints + remainingPoints;
+        friendlyPoints = bluePoints + totalPoints;
+        return bluePoints + totalPoints > redPoints + remainingPoints;
     } else if (clientTeam == "red") {
-        const totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
-        let remaningPoints = 51 - totalPoints;
-        return 51 - redPoints + totalPoints > bluePoints + remaningPoints;
+        totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
+        remainingPoints = totalPossiblePoints - totalPoints;
+        enemyPoints = bluePoints + remainingPoints;
+        friendlyPoints = redPoints + totalPoints;
+        return redPoints + totalPoints > bluePoints + remainingPoints;
     }
 }
