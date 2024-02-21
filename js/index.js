@@ -1,11 +1,11 @@
 // Point Values
-const pointValues = [15, 12, 10, 8, 6, 4, 2, 1];
+const pointValues = [10, 8, 6, 5, 4, 3, 2, 1];
 
 // Places
 const places = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"];
 
 // Intializing variables
-const totalPossiblePoints = 58;
+const totalPossiblePoints = 39;
 
 let remainingPoints;
 
