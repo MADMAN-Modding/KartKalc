@@ -16,18 +16,11 @@
         in a race.</h2>
     <h3>Click or tap on the "Check for places" text in order to see what places your team needs to take the lead.</h3>
 
-        
-    <p>Which team are you on?</p>
     <form>
-        <input type="radio" id="redTeamButton" name="teamSelector" onclick="teamChange('red')" value="red"> Red Team
-        <br>
-        <input type="radio" id="blueTeamButton" name="teamSelector" onclick="teamChange('blue')" value="blue"> Blue Team
+        <p id="yourPointsText"><input type="number" id="yourPoints"> Your Team Points</p>
     </form>
     <form>
-        <p id="redPointsText"><input type="number" id="redPoints"> Red Team Points</p>
-    </form>
-    <form>
-        <p id="bluePointsText"><input type="number" id="bluePoints"> Blue Team Points</p>
+        <p id="thierPointsText"><input type="number" id="thierPoints"> Thier Team Points</p>
     </form>
 
     <p onclick="main()" id="check">Check for places</p>
