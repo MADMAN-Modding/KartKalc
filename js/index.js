@@ -69,5 +69,5 @@ function checkPoints(yourPoints, thierPoints, ...indices) {
     remainingPoints = totalPossiblePoints - totalPoints;
     enemyPoints = thierPoints + remainingPoints;
     friendlyPoints = yourPoints + totalPoints;
-    return yourPoints + totalPoints > yourPoints + remainingPoints;
+    return friendlyPoints > enemyPoints;
 }
