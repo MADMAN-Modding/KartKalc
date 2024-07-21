@@ -6,7 +6,7 @@
     <meta charset="utf-8" lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/index.css" rel="stylesheet" type="text/css">
-    <script src="js/index.js"></script>
+    <script src="js/kalc.js"></script>
 
 </head>
 
@@ -15,15 +15,17 @@
     <h2>I made this tool so it would be possible to kalculate what places your team would need in order to take the lead
         in a race.</h2>
     <h3>Click or tap on the "Check for places" text in order to see what places your team needs to take the lead.</h3>
+    
+    <p><input type="number" id="racesRemaining"> How many races remain?</p> 
 
     <form>
         <p id="yourPointsText"><input type="number" id="yourPoints"> Your Team Points</p>
     </form>
     <form>
-        <p id="thierPointsText"><input type="number" id="thierPoints"> Thier Team Points</p>
+        <p id="thierPointsText"><input type="number" id="theirPoints"> Their Team Points</p>
     </form>
 
-    <p onclick="main()" id="check">Check for places</p>
+    <p onclick="kalc()" id="check">Check for places</p>
 
     <p id="places">The possible places are: </p>
 </body>
