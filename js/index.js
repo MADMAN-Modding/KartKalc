@@ -30,7 +30,7 @@ function main() {
         return;
     }
 
-    // For loop that goes through the optionss
+    // For loop that goes through the options
     for (let ii = 0; ii < pointValues.length; ii++) {
         if (checkPoints(yourPoints, theirPoints, ii)) {
             placesElement.innerHTML += " " + places[ii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
@@ -68,7 +68,7 @@ function checkPoints(yourPoints, theirPoints, ...indices) {
     // Adds all the possible point values together
     totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
     remainingPoints = totalPossiblePoints;
-    console.log(totalPossiblePoints * (racesRemaining - (racesRemaining - racesCycled)))
+    // console.log(totalPossiblePoints * (racesRemaining - (racesRemaining - racesCycled)))
     enemyPoints = theirPoints + remainingPoints;
     friendlyPoints = yourPoints + totalPoints;
     return friendlyPoints > enemyPoints;
