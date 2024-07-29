@@ -15,11 +15,6 @@ let enemyPoints;
 
 let friendlyPoints;
 
-let racesCycled = 1;
-
-let racesRemaining;
-
-
 // Main function
 function main() {
     // Initializes the placesElement variable
@@ -30,31 +25,27 @@ function main() {
     // Gets the values from the form
     const yourPoints = +document.getElementById("yourPoints").value;
     const theirPoints = +document.getElementById("theirPoints").value;
-    racesRemaining = +document.getElementById("racesRemaining").value;
     
     if (yourPoints > theirPoints) {
         return;
     }
 
-    // For loop that goes through the options
-    for (let i = 0; i < racesRemaining; i++) {
-        placesElement.innerHTML += "<h3>" + (i + 1) + " Races</h3>";
-        for (let ii = 0; ii < pointValues.length; ii++) {
-            if (checkPoints(yourPoints, theirPoints, ii)) {
-                placesElement.innerHTML += " " + places[ii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
-            } else {
-                for (let iii = ii + 1; iii < pointValues.length; iii++) {
-                    if (checkPoints(yourPoints, theirPoints, ii, iii)) {
-                        placesElement.innerHTML += " " + places[ii] + " and " + places[iii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
-                    } else {
-                        for (let iv = iii + 1; iv < pointValues.length; iv++) {
-                            if (checkPoints(yourPoints, theirPoints, ii, iii, iv)) {
-                                placesElement.innerHTML += " " + places[ii] + ", " + places[iii] + ", and " + places[iv] + " " + friendlyPoints + " to " + enemyPoints + " | ";
-                            } else {
-                                for (let v = iv + 1; v < pointValues.length; v++) {
-                                    if (checkPoints(yourPoints, theirPoints, ii, iii, iv, v)) {
-                                        placesElement.innerHTML += " " + places[ii] + ", " + places[iii] + ", " + places[iv] + ", and " + places[v] + " " + friendlyPoints + " to " + enemyPoints + " | ";
-                                    }
+    // For loop that goes through the optionss
+    for (let ii = 0; ii < pointValues.length; ii++) {
+        if (checkPoints(yourPoints, theirPoints, ii)) {
+            placesElement.innerHTML += " " + places[ii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
+        } else {
+            for (let iii = ii + 1; iii < pointValues.length; iii++) {
+                if (checkPoints(yourPoints, theirPoints, ii, iii)) {
+                    placesElement.innerHTML += " " + places[ii] + " and " + places[iii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
+                } else {
+                    for (let iv = iii + 1; iv < pointValues.length; iv++) {
+                        if (checkPoints(yourPoints, theirPoints, ii, iii, iv)) {
+                            placesElement.innerHTML += " " + places[ii] + ", " + places[iii] + ", and " + places[iv] + " " + friendlyPoints + " to " + enemyPoints + " | ";
+                        } else {
+                            for (let v = iv + 1; v < pointValues.length; v++) {
+                                if (checkPoints(yourPoints, theirPoints, ii, iii, iv, v)) {
+                                    placesElement.innerHTML += " " + places[ii] + ", " + places[iii] + ", " + places[iv] + ", and " + places[v] + " " + friendlyPoints + " to " + enemyPoints + " | ";
                                 }
                             }
                         }
@@ -62,7 +53,6 @@ function main() {
                 }
             }
         }
-        racesCycled++;
     }
 
     // Gives a sad message or replaces the last comma with a .
@@ -77,7 +67,7 @@ function main() {
 function checkPoints(yourPoints, theirPoints, ...indices) {
     // Adds all the possible point values together
     totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
-    remainingPoints = totalPossiblePoints * (racesRemaining - (racesRemaining - racesCycled) - totalPoints);
+    remainingPoints = totalPossiblePoints;
     console.log(totalPossiblePoints * (racesRemaining - (racesRemaining - racesCycled)))
     enemyPoints = theirPoints + remainingPoints;
     friendlyPoints = yourPoints + totalPoints;

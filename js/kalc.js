@@ -58,7 +58,7 @@ function checkPoints(yourPoints, theirPoints, ...indices) {
     // All the points in the game
     totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0) * pointsMultiplier;
     // All the points remaining in the game
-    remainingPoints = totalPossiblePoints - totalPoints;
+    remainingPoints = totalPossiblePoints * pointsMultiplier - totalPoints;
     enemyPoints = theirPoints + remainingPoints;
     friendlyPoints = yourPoints + totalPoints;
     return friendlyPoints > enemyPoints;
