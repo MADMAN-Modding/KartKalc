@@ -67,8 +67,7 @@ function main() {
 function checkPoints(yourPoints, theirPoints, ...indices) {
     // Adds all the possible point values together
     totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0);
-    remainingPoints = totalPossiblePoints;
-    // console.log(totalPossiblePoints * (racesRemaining - (racesRemaining - racesCycled)))
+    remainingPoints = totalPossiblePoints - totalPoints;
     enemyPoints = theirPoints + remainingPoints;
     friendlyPoints = yourPoints + totalPoints;
     return friendlyPoints > enemyPoints;
