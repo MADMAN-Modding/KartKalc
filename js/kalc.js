@@ -13,13 +13,10 @@ let totalPoints;
 
 let enemyPoints;
 
-let friendlyPoints;
-
-let racesCycled = 1;
+let friendlyPoints = 0;
 
 let racesRemaining;
 
-let pointsMultiplier = 1;
 
 function kalc() {
  
@@ -37,28 +34,29 @@ function kalc() {
         return;
     }
 
-    // For loop that goes through the options
     for (let i = 0; i < racesRemaining; i++) {
-        placesElement.innerHTML += "<h3>" + (i + 1) + " Races</h3>";
-        for (let ii = 0; ii < pointValues.length; ii++) {
-            if (checkPoints(yourPoints, theirPoints, ii)) {
-                placesElement.innerHTML += " " + places[ii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
-            } else {
-                pointsMultiplier++;
-                if (checkPoints(yourPoints, theirPoints, ii)) {
-                    placesElement.innerHTML += " " + places[ii] + " " + friendlyPoints + " to " + enemyPoints + " | ";
-                }
-            }
+        document.getElementById("races" + (i + 1)).style.display = "block";
+    }
+
+    // For loop that goes through the options
+    for (let playerOne = 0; playerOne < pointValues.length; playerOne++) {
+        if (checkPoints(yourPoints, theirPoints, 1, playerOne)) {
+            placesElement.innerHTML += " " + places[playerOne] + " " + friendlyPoints + " to " + enemyPoints + " | ";
+        } else if (checkPoints(yourPoints, theirPoints, 2, playerOne, playerOne + 1)) {
+            document.getElementById("races2").innerHTML += " Race 1: " + places[playerOne] + ", Race 2: " + places[playerOne + 1] + " " + friendlyPoints + " to " + enemyPoints + " | "; 
+        } else if (checkPoints(yourPoints, theirPoints, 2, playerOne, playerOne + 1, playerOne + 2)) {
+            document.getElementById("races3").innerHTML += " Race 1: " + places[playerOne] + ", Race 2: " + places[playerOne + 1] + ", Race 3: " + places[playerOne + 2] + " " + friendlyPoints + " to " + enemyPoints + " | "; 
         }
+        friendlyPoints = 0;
     }
 }
 
 // Function for checking points
-function checkPoints(yourPoints, theirPoints, ...indices) {
-    // All the points in the game
-    totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0) * pointsMultiplier;
+function checkPoints(yourPoints, theirPoints, multiplier, ...indices) {
+    // All the points that would be obtained from the friendly team
+    totalPoints = indices.reduce((sum, index) => sum + pointValues[index], 0) + friendlyPoints;
     // All the points remaining in the game
-    remainingPoints = totalPossiblePoints * pointsMultiplier - totalPoints;
+    remainingPoints = totalPossiblePoints * multiplier - totalPoints;
     enemyPoints = theirPoints + remainingPoints;
     friendlyPoints = yourPoints + totalPoints;
     return friendlyPoints > enemyPoints;

@@ -12,3 +12,11 @@ h3 {
 #check:hover {
     cursor: pointer;
 }
+
+#races1,
+#races2,
+#races3,
+#races4,
+#races5 {
+    display: none;
+}
