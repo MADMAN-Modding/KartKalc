@@ -20,8 +20,10 @@ let racesRemaining;
 let raceCount = 1;
 
 function kalc() {
-  // Initializes the placesElement variable
-  const placesElement = document.getElementById("places");
+  // Reset divs
+  for (let i = 1; i <= 5; i++) {
+    document.getElementById("races" + i + "Results").innerHTML = "";
+  }
 
   // Gets the values from the form
   const yourPoints = +document.getElementById("yourPoints").value;
@@ -39,7 +41,7 @@ function kalc() {
   // For loop that goes through the options
   for (let playerOne = 0; playerOne < pointValues.length; playerOne++) {
     if (checkPoints(yourPoints, theirPoints, 1, playerOne)) {
-      placesElement.innerHTML +=
+      document.innerHTML("races1Results").innerHTML +=
         " " +
         places[playerOne] +
         " " +
@@ -47,10 +49,9 @@ function kalc() {
         " to " +
         enemyPoints +
         " | ";
-    } else if (
-      checkPoints(yourPoints, theirPoints, 2, playerOne, playerOne + 1)
-    ) {
-      document.getElementById("races2").innerHTML +=
+    }
+    if (checkPoints(yourPoints, theirPoints, 2, playerOne, playerOne + 1)) {
+      document.getElementById("races2Results").innerHTML +=
         " Race 1: " +
         places[playerOne] +
         ", Race 2: " +
@@ -60,7 +61,8 @@ function kalc() {
         " to " +
         enemyPoints +
         " | ";
-    } else if (
+    }
+    if (
       checkPoints(
         yourPoints,
         theirPoints,
@@ -70,7 +72,7 @@ function kalc() {
         playerOne + 2
       )
     ) {
-      document.getElementById("races3").innerHTML +=
+      document.getElementById("races3Results").innerHTML +=
         " Race 1: " +
         places[playerOne] +
         ", Race 2: " +
@@ -82,7 +84,8 @@ function kalc() {
         " to " +
         enemyPoints +
         " | ";
-    } else if (
+    }
+    if (
       checkPoints(
         yourPoints,
         theirPoints,
@@ -94,7 +97,7 @@ function kalc() {
         playerOne + 4
       )
     ) {
-      document.getElementById("races4").innerHTML +=
+      document.getElementById("races4Results").innerHTML +=
         " Race 1: " +
         places[playerOne] +
         ", Race 2: " +
